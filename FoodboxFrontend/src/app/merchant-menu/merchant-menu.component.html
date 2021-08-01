@@ -1,0 +1,47 @@
+<div class="body">
+  <br><br>
+  <h1 align="center">Foodbox | Menu</h1>
+  <br><br>
+
+  <div class="container">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  autocomplete="off" placeholder=" 
+    Start searching for a Item Name">
+
+    <br> <br>
+    <select class="form-control" id="sort-by" (change)="sort($event)">
+      <option value="" selected disabled hidden>Sort By</option>
+      <option value="Name">Name</option>
+      <option value="Low">Low to High Price</option>
+      <option value="High">High to Low Price</option>
+  </select>
+  
+  <br><br>
+  </div>
+
+  <table  class="table pd-b-5" align="center">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let item of model | filter:searchText">
+        <td scope="row">{{item.id}}</td>
+        <td>{{item.item}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td><button class="btn btn-primary" routerLink="/updateData/{{item.id}}" >UpdateItem</button></td>
+        <td><button class="btn btn-danger" type="submit" (click)="deleteItem(item)">DeleteItem</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <br><br>
+  <div class="container" align="center">
+    <button class="bigbutton" routerLink="/addItem"><span>Add Item</span></button>
+    <button routerLink="/home" type="button" class="bigbutton" (click)="clearLocal()"><span>Log Out</span></button>
+  </div>
+
+</div>

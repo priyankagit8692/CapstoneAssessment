@@ -1,0 +1,62 @@
+<div class="body">
+  <br><br>
+  <h1 align="center">Foodbox | Menu</h1>
+    <br><br>
+ 
+    <div class="container">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  autocomplete="off" placeholder=" 
+      Start searching for a Item Name">
+  
+      <br> <br>
+      <select class="form-control" id="sort-by" (change)="sort($event)">
+        <option value="" selected disabled hidden>Sort By</option>
+        <option value="Name">Name</option>
+        <option value="Low">Low to High Price</option>
+        <option value="High">High to Low Price</option>
+    </select>
+    
+    <br><br>
+    </div>
+
+   
+  <br>
+  <br>
+  <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && getTotal()" novalidate class="feedback-form">
+    <div class="container-fluid" style="margin: 0 auto; width: 75%;">
+      <div class="row">
+        <div class="card-deck" *ngFor="let m of model | filter:searchText; let index=index" style="padding-right: 3px">
+          <div class="card" style="width: 18rem;">
+            <div class="card-block">
+              <div class="card-body">
+                <h5 class="card-title" style="color: black">{{m.item}}</h5>
+                <p class="card-text">Price : Rs.{{m.price}}</p>
+                <p> Quantity Available : {{m.quantity}}</p>
+              </div>
+            </div>
+          </div>
+          <input class="input-group-text input-align" type="number" name="name+{{index}}" min="0" max="{{model[index].quantity}}" value="{{values[index].quantity}}" [(ngModel)]="values[index].quantity">
+        </div>
+      </div>
+    </div>
+    
+    
+    <br><br>
+    <div class="total" style="text-align: center; font-size: large">
+      Cart Total : {{total}}
+    </div>
+    <table align="center">
+      <tr>
+        <td>
+          <input type="submit" class="bigbutton" value="Add To Cart">
+        </td>
+        <td>
+          <button routerLink="/checkout" class="bigbutton"><span>Buy</span></button>
+        </td>
+        <td>
+          <button routerLink="/home" type="button" class="bigbutton" (click)="clearLocal()"><span>Log Out</span></button>
+        </td>
+      </tr>
+    </table>
+    </form>
+    </div>
+    
