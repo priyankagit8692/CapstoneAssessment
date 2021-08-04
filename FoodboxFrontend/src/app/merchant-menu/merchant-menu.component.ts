@@ -87,7 +87,7 @@ export class MerchantMenuComponent implements OnInit {
       }
     });
   }
-
+  
   getTotal():void{
     let url = "http://localhost:8087/addToCart";
     this.modalCart.quantity1=this.values[0].quantity;
